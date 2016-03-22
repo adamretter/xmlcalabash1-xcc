@@ -240,6 +240,14 @@ uploadArchives {
             name 'Norman Walsh'
           }
         }
+
+        repositories {
+          repository {
+            id 'marklogic'
+            url 'http://developer.marklogic.com/maven2'
+          }
+        }
+
       }
     }
   }

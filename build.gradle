@@ -200,6 +200,50 @@ gradle.taskGraph.whenReady { taskGraph ->
   }
 }
 
+def mavenPom = {
+  name 'XML Calabash MarkLogic XCC Steps'
+  packaging 'jar'
+  description 'XML Calabash extension steps to communicate with MarkLogic server'
+  url 'https://github.com/ndw/xmlcalabash1-xcc'
+
+  scm {
+    url 'scm:git@github.com:ndw/xmlcalabash1-xcc.git'
+    connection 'scm:git@github.com:ndw/xmlcalabash1-xcc.git'
+    developerConnection 'scm:git@github.com:ndw/xmlcalabash1-xcc.git'
+  }
+
+  licenses {
+    license {
+      name 'The Apache Software License, Version 2.0'
+      url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+      distribution 'repo'
+    }
+  }
+
+  developers {
+    developer {
+      id 'ndw'
+      name 'Norman Walsh'
+    }
+  }
+
+  repositories {
+    repository {
+      id 'marklogic'
+      url 'http://developer.marklogic.com/maven2'
+    }
+  }
+
+}
+
+install {
+  repositories {
+    mavenInstaller {
+      pom.project(mavenPom)
+    }
+  }
+}
+
 uploadArchives {
   repositories {
     mavenDeployer {
@@ -214,41 +258,7 @@ uploadArchives {
         authentication(userName: sonatypeUsername, password: sonatypePassword)
       }
 
-      pom.project {
-        name 'XML Calabash MarkLogic XCC Steps'
-        packaging 'jar'
-        description 'XML Calabash extension steps to communicate with MarkLogic server'
-        url 'https://github.com/ndw/xmlcalabash1-xcc'
-
-        scm {
-          url 'scm:git@github.com:ndw/xmlcalabash1-xcc.git'
-          connection 'scm:git@github.com:ndw/xmlcalabash1-xcc.git'
-          developerConnection 'scm:git@github.com:ndw/xmlcalabash1-xcc.git'
-        }
-
-        licenses {
-          license {
-            name 'The Apache Software License, Version 2.0'
-            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-            distribution 'repo'
-          }
-        }
-
-        developers {
-          developer {
-            id 'ndw'
-            name 'Norman Walsh'
-          }
-        }
-
-        repositories {
-          repository {
-            id 'marklogic'
-            url 'http://developer.marklogic.com/maven2'
-          }
-        }
-
-      }
+      pom.project(mavenPom)
     }
   }
 }
